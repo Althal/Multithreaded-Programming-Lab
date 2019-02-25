@@ -7,11 +7,11 @@ package javaapplication1;
 
 import java.util.ArrayList;
 
-public class JavaApplication1 {
+public class Lab1 {
 
     private static class ThreadExample implements Runnable{
         @Override
-        public void run(){}                  
+        public void run(){while(true){}}                  
     }
     
     private static class ThreadFactory {
@@ -22,15 +22,27 @@ public class JavaApplication1 {
             for(int i=0;i<count;i++){
                 
                 long start = System.nanoTime();                
-                threads.add(new ThreadExample());               
+                threads.add(new ThreadExample());
+                new Thread(threads.get(i)).start();
                 long stop = System.nanoTime();
                 
                 System.out.println("Czas stworzenia wątku " + (i+1) + ": " + (stop - start));
             }
         }
+        
+        public void addThreadToFactory(){
+            threads.add(new ThreadExample());
+        }
     }
     
     public static void main(String[] args) {
-        new ThreadFactory(20);       
+        int i = 20;
+        ThreadFactory t = new ThreadFactory(i); 
+        
+        while(true){
+            t.addThreadToFactory();
+            i++;
+            System.out.println(i);
+        }
     }   
 }
