@@ -22,7 +22,6 @@ public class Lab3 {
         private static void generate(String alphabet, int i, String s, int len) 
         { 
             if (i==0){ 
-                if(s == null) System.out.println("wtf");
                 passwords.add(s);
                 return; 
             } 
